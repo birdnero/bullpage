@@ -22,8 +22,8 @@ const Error: React.FC = () => {
     }
 
 
-    return <div className={styles.error_back}>
-        <div className={styles.error_container}>
+    return <div className={styles.error_container}>
+        <div className={styles.error_inner_container}>
             <img src={logo} alt="logo" />
             <p className={styles.error_text}>
                 {text}
