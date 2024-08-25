@@ -1,0 +1,47 @@
+/* Index.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+
+
+:root {
+    /* colors */
+    --white: #ffffff;
+    --gray: #1e1e1e;
+    --magenta: #ff007b;
+
+
+    --t-size-big: 6dvw;
+    --t-shadow-norm: 4px 1px 4px var(--gray);
+}
+
+* {
+    font-family: 'Roboto Mono';
+    font-weight: 600;
+    font-style: normal;
+    padding: 0;
+    margin: 0;
+}
+
+.error{
+
+    &_back{
+        height: 100dvh;
+        width: 100dvw;
+        margin: auto;
+        background-color: var(--magenta);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &_container{
+        padding: 5dvw;
+    }
+
+    &_text {
+        color: var(--white);
+        font-size: var(--t-size-big);
+    }
+
+}
+

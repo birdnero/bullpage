@@ -1,0 +1,34 @@
+import React from "react";
+import logo from "../../assets/logo_no_magenta.png"
+import { useLocation } from 'react-router-dom';
+import styles from "../Index.module.scss"
+
+//сторінка для помилок
+const Error: React.FC = () => {
+    const location = useLocation(); // Отримуємо поточний шлях з адресного рядка
+
+    //в залежності від url виводиться текст
+    let text = "";
+    switch (location.pathname) {
+        case "/denied":
+            text = "ACCESS DENIED :/"
+            break;
+        case "/error":
+            text = "ERROR OCURRED :/"
+            break;
+        default:
+            text = "ERROR 4O4: PAGE NOT FOUND :/"
+            break;
+    }
+
+
+    return <div className={styles.error_back}>
+        <div className={styles.error_container}>
+            <img src={logo} alt="logo" />
+            <p className={styles.error_text}>
+                {text}
+            </p>
+        </div>
+    </div>
+}
+export default Error

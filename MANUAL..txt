@@ -1,0 +1,9 @@
+кольорова тема проекту
+
+Gray (dark): #1E1E1E
+Magenta-lighter (main): #ff007b
+Magenta-darker: #ee006a
+
+////////////////////////////////////
+
+шрифт: Roboto Mono
