@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../../assets/logo_no_magenta.png"
 import { useLocation } from 'react-router-dom';
-import styles from "../Index.module.scss"
+import styles from "../index.module.scss"
 
 //сторінка для помилок
 const Error: React.FC = () => {
