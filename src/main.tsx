@@ -6,7 +6,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { Provider as ReduxProvider } from 'react-redux'
-import { store } from './store/store';
+import { state } from './store/store';
 import Auth from './components/auth/auth';
 import Error from './components/error/error';
 
@@ -31,13 +31,14 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />
+    
   }
 
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ReduxProvider store={store}>
+    <ReduxProvider store={state}>
       <RouterProvider router={router} />
     </ReduxProvider>
   </React.StrictMode >,

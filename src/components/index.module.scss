@@ -6,7 +6,7 @@
 :root {
     /* colors */
     --white: #ffffff;
-    --gray: #1e1e1e;
+    --gray: #202124;
     --magenta: #ff007b;
     --transparent-magenta: #ff007b40;
 
@@ -15,7 +15,20 @@
     --t-size-mini: 1.7dvh;
     --t-shadow-norm-gray: 4px 1px 4px var(--gray);
     --t-shadow-light-magenta: 4px 1px 4px var(--magenta);
+    --t-shadow-light-white: 4px 1px 4px var(--white);
 }
+
+
+@mixin hover_link{
+    scale: 1.01;
+    transition: 300ms;
+}
+
+@mixin hover_link_scaled{
+    scale: 1.05;
+    transition: 300ms;
+}
+
 
 * {
     font-family: 'Roboto Mono';
@@ -25,6 +38,8 @@
     margin: 0;
     color: var(--white);
 }
+
+////////////////////////////////////////////////////////////////////// 
 
 
 .error {
@@ -85,8 +100,23 @@
     &_url:hover {
         text-shadow: var(--t-shadow-light-magenta);
         filter: brightness(1.2);
-        scale: 1.01;
-        transition: 300ms;
+        @include hover_link();
+    }
+
+    &_skip_btn{
+        color: var(--white);
+        font-size: var(--t-size-normal);
+        text-decoration: underline;
+        position: absolute;
+        z-index: 10;
+        top: 6dvh;
+        right: 5dvw;
+        cursor: alias;
+
+        &:hover{
+            text-shadow: var(--t-shadow-light-white);
+            @include hover_link_scaled();
+        }
     }
 
     &_ok_btn {
@@ -96,8 +126,7 @@
         &:hover {
             cursor: alias;
             filter: brightness(1.2);
-            scale: 1.1;
-            transition: 300ms;
+            @include hover_link_scaled();
         }
 
         &_disable {
@@ -107,7 +136,15 @@
     }
 
 
-
+    &_bottom_text{
+        position: absolute;
+        z-index: 10;
+        bottom: 6dvh;
+        width: 100dvw;
+        display: flex;
+        justify-content: center;
+        font-size: var(--t-size-mini);
+    }
 
 
 
