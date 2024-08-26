@@ -52,5 +52,5 @@ export const CheckInput = (value: string, type: InputType): boolean | string => 
 
 
 export const Login = (login: string, password: string) =>{
-    
+    login + " " + password
 }

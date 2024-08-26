@@ -28,6 +28,7 @@ const Auth: React.FC = () => {
     }
 
     useLayoutEffect(() => {
+        setLoading(false)
         messageApi.info(content, duration, onClose)
     }, [content])
 
@@ -124,7 +125,7 @@ const Auth: React.FC = () => {
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                         <p
                             className={styles.auth_url}
-                            onClick={() => {/*TODO: <Registration /> */ }}>
+                            onClick={() => {/*TODO: <Registration />   */ }}>
                             or Register here
                         </p>
                         <img
