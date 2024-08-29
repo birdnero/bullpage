@@ -1,15 +1,16 @@
 import React, { useLayoutEffect, useRef } from "react";
-import { CheckCookie, CheckInput, Login } from "./auth_funcs";
+import { CheckInput, Login, SkipFn } from "./auth_funcs";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Loading from "../loading/loading";
 import { useEffect } from "react";
 import { Input, ConfigProvider, Space, InputRef, message } from "antd";
 import styles from "../index.module.scss"
-import { CloseCircleOutlined, EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
+import { CloseCircleOutlined, EyeInvisibleOutlined, EyeOutlined, LoadingOutlined } from "@ant-design/icons";
 import logo from "../../assets/logo.png"
 import ok_btn from "../../assets/ok_btn.svg"
 import { getState, setState } from "../../store/store";
+import Cookies from "js-cookie"
+import { Colors } from "../../STANDARTS";
 
 const Auth: React.FC = () => {
     const [loading, setLoading] = useState(false)
@@ -19,42 +20,53 @@ const Auth: React.FC = () => {
     const navigate = useNavigate()
     const second_input_ref = useRef<InputRef>(null)
     const [messageApi, messageElement] = message.useMessage()
-    const { content, duration, onClose } = getState(e => e.DoMessage)
-    const { setMessage } = setState()
+    const { content, duration, onClose } = getState(e => e.getMessage)
+    const { setMessage, setLoginStatus } = setState()
 
-
-    if (CheckCookie("user_token")) {
-        navigate("/")
-    }
+    //перенаправка у випадку якщо вже є потрібна кука (без перевірики на автентичність)
+    useEffect(() => {
+        if (Cookies.get("user_token") || Cookies.get("user_token") !== "skipped_registration") {
+            //  navigate("/")
+        }
+    }, [])
 
     useLayoutEffect(() => {
-        setLoading(false)
         messageApi.info(content, duration, onClose)
     }, [content])
 
     useEffect(() => {
-        if(!CheckInput(input1, "login") && !CheckInput(input2, "password")){
+        if (!CheckInput(input1, "login") && !CheckInput(input2, "password")) {
             setAllRight(true)
         }
     }, [input1, input2])
 
+
+
+
+
+
+
+
+
+
+
     return <>
-        {loading ? <Loading /> : <div className={styles.auth_container}>
+        {<div className={styles.auth_container}>
             <ConfigProvider
                 theme={{
                     components: {
                         Input: {
-                            colorTextPlaceholder: "#838383"//TODO:ПОМІНЯТИ НА ЗМІННУ КОЛИ НЕБУДЬ ПОТІМ
+                            colorTextPlaceholder: Colors.colorTextPlaceholder
                         },
                         Message: {
-                            contentBg: "#ff007b"//TODO:ПОМІНЯТИ НА ЗМІННУ КОЛИ НЕБУДЬ
+                            contentBg: Colors.magenta
                         }
                     },
                 }}
             >
-                <div style={{position: "relative"}}>{messageElement}</div>
+                <div style={{ position: "relative" }}>{messageElement}</div>
 
-                <p className={styles.auth_skip_btn} onClick={() => { }}>Just skip</p>
+                <p className={styles.auth_skip_btn} onClick={() => SkipFn(navigate)}>Just skip</p>
 
                 <Space
                     direction="vertical"
@@ -74,6 +86,7 @@ const Auth: React.FC = () => {
                         onKeyDown={(e) => { //перевірка та рефокусація при нажиманні Enter
                             if (e.key == "Enter") {
                                 //повертає 0 або помилку
+
                                 const fitTemplate = CheckInput(input1, "login")
                                 if (!fitTemplate) {
                                     if (second_input_ref.current) {
@@ -81,10 +94,10 @@ const Auth: React.FC = () => {
                                     }
                                 } else {
                                     setMessage({
-                                        content:{
+                                        content: {
                                             content: fitTemplate,
                                             className: styles.message,
-                                            icon: <CloseCircleOutlined style={{stroke: "#ff007b"/*TODO:змінити потім на змінну*/}} />
+                                            icon: <CloseCircleOutlined style={{ stroke: Colors.magenta }} />
                                         }
                                     })
                                 }
@@ -101,16 +114,16 @@ const Auth: React.FC = () => {
                             if (e.key == "Enter") {
                                 const fitTemplate = CheckInput(input2, "password")
                                 if (!fitTemplate) {
-                                    if(!CheckInput(input1, "login")){
-                                        Login(input1, input2)
+                                    if (!CheckInput(input1, "login")) {
+                                        Login(input1, input2, setMessage, setLoading, setLoginStatus)
                                     } else {
-                                        if(second_input_ref.current){
+                                        if (second_input_ref.current) {
                                             second_input_ref.current.blur()
                                         }
                                     }
                                 } else {
                                     setMessage({
-                                        content:{
+                                        content: {
                                             content: fitTemplate
                                         }
                                     })
@@ -125,14 +138,30 @@ const Auth: React.FC = () => {
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                         <p
                             className={styles.auth_url}
-                            onClick={() => {/*TODO: <Registration />   */ }}>
+                            onClick={() => { navigate("/registration") }}>
                             or Register here
                         </p>
-                        <img
-                            className={(allRight ? styles.auth_ok_btn : styles.auth_ok_btn_disable)}
-                            onClick={() => {Login(input1, input2)}}
-                            src={ok_btn}
-                            alt="OK" />
+                        {loading ?
+                            <div className={styles.auth_loading}>
+                                <LoadingOutlined />
+                            </div>
+                            :
+                            <img
+                                className={(allRight ? styles.auth_ok_btn : styles.auth_ok_btn_disable)}
+                                onClick={() => {
+                                    if (allRight) {
+                                        Login(input1, input2, setMessage, setLoading, setLoginStatus)
+                                    } else {
+                                        setMessage({
+                                            content: {
+                                                content: "you haven't entered data correctly"
+                                            }
+                                        })
+                                    }
+                                }}
+                                src={ok_btn}
+                                alt="OK" />}
+
                     </div>
                 </Space>
             </ConfigProvider>

@@ -1,36 +1,27 @@
-import { JointContent } from "antd/es/message/interface";
-
-export interface TypeMessage {
-  content: JointContent,
-  duration?: number | VoidFunction,
-  onClose?: VoidFunction
+export interface TypeStatus {
+  login_status: boolean
 }
 
-export interface TypeActionForGetStateMessage {
+export interface TypeActionForGetStateLoginStatus {
   type: string,
-  payload: TypeMessage
+  payload: TypeStatus
 }
 
 
 // Action Types
-const SET_MESSAGE = "SET_MESSAGE";
+const SET_STATUS = "SET_STATUS";
 
 //початковий state
-const ZeroMessage: TypeMessage = {
-  content: {
-    content: "",
-    style: {
-      display: "none"
-    }
-  }
+const ZeroMessage: TypeStatus = {
+  login_status: false
 }
 
 /*(початковий state, action{тип для розуміння що треба робити, state який надходить})=>{
     конструкція якщо треба і щоб повертало або state що надходить або інші дані цього типу
 }*/
-export const getMessage = (state = ZeroMessage, action: TypeActionForGetStateMessage): TypeMessage => {
+export const getLoginSatus = (state = ZeroMessage, action: TypeActionForGetStateLoginStatus): TypeStatus => {
   switch (action.type) {
-    case SET_MESSAGE:
+    case SET_STATUS:
       return action.payload;
     default:
       return state;
@@ -38,7 +29,7 @@ export const getMessage = (state = ZeroMessage, action: TypeActionForGetStateMes
 };
 
 //ця функція буде встановлювати новий state поіертає об'єкт типу action з верхньої функції
-export const setMessage = (state: TypeMessage): TypeActionForGetStateMessage => ({
-  type: SET_MESSAGE,
+export const setLoginStatus = (state: TypeStatus): TypeActionForGetStateLoginStatus => ({
+  type: SET_STATUS,
   payload: state,
 });

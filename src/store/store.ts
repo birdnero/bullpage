@@ -1,16 +1,19 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { createStore, combineReducers, bindActionCreators } from "redux";
 import { getMessage, setMessage } from "./functions/message";
+import { getLoginSatus, setLoginStatus } from "./functions/login_status";
 
 
 //used in getState
 const rootReducer = combineReducers({
-    DoMessage: getMessage
+    getMessage: getMessage,
+    getLoginSatus: getLoginSatus,
 })
 
 //used in setState
 const ActionCreators={
-    setMessage
+    setMessage,
+    setLoginStatus,
 }
 
 ///////////////////////////////////////////////////////

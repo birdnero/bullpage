@@ -1,14 +1,8 @@
-//функція для провірки наявності певної куки в браузері
-export const CheckCookie = (name: string): boolean => {
-    const cookies: string[] = document.cookie.split(';');
-    cookies.forEach(el => {
-        let cookie = el.trim()
-        if (cookie.startsWith(name + "=")) {
-            return true
-        }
-    })
-    return false
-}
+import Cookies from "js-cookie"
+import { FetchFn } from "../FetchFn"
+import { TypeActionForGetStateMessage, TypeMessage } from "../../store/functions/message"
+import { TypeActionForGetStateLoginStatus, TypeStatus } from "../../store/functions/login_status"
+import { NavigateFunction } from "react-router-dom"
 
 export type InputType = "login" | "password"
 
@@ -17,11 +11,11 @@ export const CheckInput = (value: string, type: InputType): boolean | string => 
     switch (type) {
         case "login":
             //перевіряє довжину (від 4 до 20)
-            if (value.match(/^.{4,20}$q`/)) {
+            if (value.match(/^.{4,20}$/)) {
                 //перевіряє на руснявість
                 if (value.match(/[ЪЫЭЁъыэё]/)) {
                     return "заборонено використовувати йобану російську"
-                //перевіряє на англійську + українську + символи "\-_. " 
+                    //перевіряє на англійську + українську + символи "\-_. " 
                 } else if (value.match(/^[a-zA-Zа-яА-ЯіІїЇєЄґҐ0-9\-_\. ]{4,20}$/)) {
                     return false
                 } else {
@@ -50,7 +44,32 @@ export const CheckInput = (value: string, type: InputType): boolean | string => 
     return false
 }
 
+//робить спробу ввійти в акаунт
+export const Login = (
+    login: string,
+    password: string,
+    setMessage: (payload: TypeMessage) => TypeActionForGetStateMessage,
+    setLoading: ((value: React.SetStateAction<boolean>) => void) | null,
+    setLoginStatus: (state: TypeStatus) => TypeActionForGetStateLoginStatus
+) => {
+    FetchFn({
+        type: "login",
+        login: login,
+        password: password
+    },
+        (answer: null | string) => {
+            if (answer) {
+                setMessage({ content: { content: answer } })
+            } else {
+                setLoginStatus({login_status: true})
+            }
+        },
+        setLoading, setMessage, true
+    )
+}
 
-export const Login = (login: string, password: string) =>{
-    login + " " + password
+//додає gest_user до user_token тобто каже що користувач не хоче рейструватися
+export const SkipFn = (navigate: NavigateFunction) => {
+    Cookies.set("user_token", "skipped_registration", { path: "/", expires: 0.5 })
+    navigate("/")
 }
