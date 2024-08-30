@@ -1,13 +1,14 @@
-export type FetchTypes = `skip_auth` /* має задати куку user_token=skipped_registration */ | `login` /* має задати куку */ | `check_cookie`
+export type FetchTypes = `login` | `check_cookie` | `signup`
+
+export const url = 'https://animepear.pythonanywhere.com/'
 
 
-
-export type CookieNames = `user_token`
+export type CookieNames = `user_token` | `login`
 
 
 export enum Colors {
     white = `#ffffff`,
-    gray = `#202124`,
+    gray = `#282424`,
     magenta = `#ff007b`,
     transparent_magenta = `#ff007b40`,
 

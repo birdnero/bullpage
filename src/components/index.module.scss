@@ -6,7 +6,7 @@
 :root {
     /* colors */
     --white: #ffffff;
-    --gray: #202124;
+    --gray: #282424;
     --magenta: #ff007b;
     --transparent-magenta: #ff007b40;
 
@@ -136,6 +136,7 @@
     }
 
     &_ok_btn {
+        user-select: none;
         aspect-ratio: 1 / 1;
         height: var(--height-standart-step);
         cursor: alias;
@@ -149,6 +150,7 @@
 
         &_disable {
             cursor: not-allowed;
+            user-select: none;
         }
 
     }

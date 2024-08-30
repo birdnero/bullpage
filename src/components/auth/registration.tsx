@@ -12,14 +12,16 @@ import { getState, setState } from "../../store/store";
 import Cookies from "js-cookie"
 import { Colors } from "../../STANDARTS";
 
-const Auth: React.FC = () => {
+const Registration: React.FC = () => {
     const [loading, setLoading] = useState(false)
     const [allRight, setAllRight] = useState(false)
     const [input1, setInput1] = useState("")
     const [input2, setInput2] = useState("")
+    const [input3, setInput3] = useState("")
     const navigate = useNavigate()
-    const second_input_ref = useRef<InputRef>(null)
     const first_input_ref = useRef<InputRef>(null)
+    const second_input_ref = useRef<InputRef>(null)
+    const third_input_ref = useRef<InputRef>(null)
     const [messageApi, messageElement] = message.useMessage()
     const { content, duration, onClose } = getState(e => e.getMessage)
     const { setMessage, setLoginStatus } = setState()
@@ -27,7 +29,7 @@ const Auth: React.FC = () => {
     //перенаправка у випадку якщо вже є потрібна кука (без перевірики на автентичність)
     useEffect(() => {
         if (Cookies.get("user_token")) {
-            if(Cookies.get("user_token") !== "skipped_registration"){
+            if (Cookies.get("user_token") !== "skipped_registration") {
                 navigate("/")
             }
         }
@@ -38,12 +40,12 @@ const Auth: React.FC = () => {
     }, [content])
 
     useEffect(() => {
-        if (!CheckInput(input1, "login") && !CheckInput(input2, "password")) {
+        if (!CheckInput(input1, "login") && !CheckInput(input2, "password") && input2 === input3) {
             setAllRight(true)
         } else {
             setAllRight(false)
         }
-    }, [input1, input2])
+    }, [input1, input2, input3])
 
 
 
@@ -79,12 +81,13 @@ const Auth: React.FC = () => {
                     className={styles.auth_inner_container}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "end" }}>
 
-                        <p className={styles.auth_text}>Log in</p>
+                        <p className={styles.auth_text}>Sign up</p>
                         <img style={{ userSelect: "none" }} src={logo} alt="logo" />
 
                     </div>
                     {/* login input */}
                     <Input
+                        style={{ marginBottom: "2dvh" }}
                         /*autoFocus*///TODO:РОЗКОМЕНТИТИ ПОТІМ
                         value={input1} //разом з onChange записує значення в стан
                         onChange={(e) => setInput1(e.currentTarget.value)}
@@ -120,12 +123,8 @@ const Auth: React.FC = () => {
                             if (e.key == "Enter") {
                                 const fitTemplate = CheckInput(input2, "password")
                                 if (!fitTemplate) {
-                                    if (allRight) {
-                                        Authentication("login", input1, input2, setMessage, setLoading, setLoginStatus, navigate)
-                                    } else {
-                                        if (first_input_ref.current) {
-                                            first_input_ref.current.focus()
-                                        }
+                                    if (third_input_ref.current) {
+                                        third_input_ref.current.focus()
                                     }
                                 } else {
                                     setMessage({
@@ -142,12 +141,40 @@ const Auth: React.FC = () => {
                         iconRender={(visible) => (visible ? <EyeOutlined /> : <EyeInvisibleOutlined />)}
                         placeholder="password"
                         className={styles.auth_input} />
+                    <Input.Password
+                        value={input3} //разом з onChange записує значення в стан
+                        onChange={(e) => setInput3(e.currentTarget.value)}
+                        onKeyDown={(e) => { //перевірка при нажиманні Enter
+                            if (e.key == "Enter") {
+                                if (input2 === input3) {
+                                    if (allRight) {
+                                        Authentication("signup", input1, input2, setMessage, setLoading, setLoginStatus, navigate)
+                                    } else {
+                                        if (first_input_ref.current) {
+                                            first_input_ref.current.focus()
+                                        }
+                                    }
+                                } else {
+                                    setMessage({
+                                        content: {
+                                            content: "passwords are different",
+                                            className: styles.message,
+                                            icon: <CloseCircleOutlined style={{ stroke: Colors.magenta }} />
+                                        }
+                                    })
+                                }
+                            }
+                        }}
+                        ref={third_input_ref}
+                        iconRender={(visible) => (visible ? <EyeOutlined /> : <EyeInvisibleOutlined />)}
+                        placeholder="repeat password"
+                        className={styles.auth_input} />
 
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                         <p
                             className={styles.auth_url}
-                            onClick={() => { navigate("/registration") }}>
-                            or Register here
+                            onClick={() => { navigate("/auth") }}>
+                            or Login here
                         </p>
                         {loading ?
                             <div className={styles.auth_loading}>
@@ -158,8 +185,8 @@ const Auth: React.FC = () => {
                                 className={(allRight ? styles.auth_ok_btn : styles.auth_ok_btn_disable)}
                                 onClick={() => {
                                     if (allRight) {
-                                        Authentication("login", input1, input2, setMessage, setLoading, setLoginStatus, navigate)
-                                        
+                                        Authentication("signup", input1, input2, setMessage, setLoading, setLoginStatus, navigate)
+
                                     } else {
                                         setMessage({
                                             content: {
@@ -175,9 +202,9 @@ const Auth: React.FC = () => {
                 </Space>
             </ConfigProvider>
             <div className={styles.auth_bottom_text}>
-            <p onClick={()=>setMessage({content: {content: <a style={{textDecoration: "none", color: Colors.white, cursor: "default"}} href="https://www.pornhub.com/video/search?search=jojo+bizarre+adventure+hentai">The best hentai is JoJo Bizzare Adventure)))</a>}})}>Anime Pear</p>
+                <p onClick={()=>setMessage({content: {content: <a style={{textDecoration: "none", color: Colors.white, cursor: "default"}} href="https://www.pornhub.com/video/search?search=jojo+bizarre+adventure+hentai">The best hentai is JoJo Bizzare Adventure)))</a>}})}>Anime Pear</p>
             </div>
         </div>}
     </>
 }
-export default Auth
+export default Registration

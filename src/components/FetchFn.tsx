@@ -1,23 +1,21 @@
-import { FetchTypes } from "../STANDARTS"
+import { CloseCircleOutlined } from "@ant-design/icons"
+import { Colors, FetchTypes, url } from "../STANDARTS"
 import { TypeActionForGetStateMessage, TypeMessage } from "../store/functions/message"
-
-
-
-export const url = ''
-
 
 
 export const FetchFn = (
     requestArray: { [key: string]: any, type? : FetchTypes },
-    Function?: (data: any) => any,
+    Function?: (data: any, setter?: (value: React.SetStateAction<any>) => void | null) => any,
     setLoading?: ((value: React.SetStateAction<boolean>) => void) | null,
     setMessage?: (payload: TypeMessage) => TypeActionForGetStateMessage, 
-    cookie: boolean= false 
+    cookie: boolean= false ,
+    something?: any
 ) => {
     const SendsetMessage = (message: React.ReactNode | string, time: number = 1.5): void => {
         if (setMessage) {
             setMessage({content: {
-                content: message
+                content: message,
+                icon: <CloseCircleOutlined style={{ stroke: Colors.magenta }} />
             }, duration: time})
         }
     }
@@ -29,29 +27,30 @@ export const FetchFn = (
     })
     setLoading ? setLoading(true) : null
     return fetch(url, cookie? {
-        method: 'POST',
-        body: requestData,
-        credentials: "include",
+        method: 'POST', // Метод запиту
+        headers: {
+            'Content-Type': 'application/json' // Вказуємо формат даних
+        },
+        body: JSON.stringify(requestArray), // Перетворюємо об'єкт в JSON
+        credentials: "include",//server with allow cross origin: * can't provide credentials
     } : {
-        method: 'POST',
-        body: requestData,
+        method: 'POST', // Метод запиту
+        headers: {
+            'Content-Type': 'application/json' // Вказуємо формат даних
+        },
+        body: JSON.stringify(requestArray) // Перетворюємо об'єкт в JSON
     })
         .then(response => response.text())
         .then(response => JSON.parse(response))
         .then(response => {
             setLoading ? setLoading(false) : null
-            if (response.error == "") {
-                const data = response.data
                 if (Function) {
-                    Function(data)
+                    something? Function(response, something) : Function(response)
                 }
 
-            } else {
-                SendsetMessage("виникла помилка, спробуйте ще раз", 3)
-            }
         })
         .catch(error => {
-            // setLoading ? setLoading(false) : null
+            setLoading ? setLoading(false) : null
             console.log(error)
             SendsetMessage("its a fucking error on server", 3)
         })

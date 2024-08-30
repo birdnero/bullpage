@@ -9,12 +9,17 @@ import { Provider as ReduxProvider } from 'react-redux'
 import { state } from './store/store';
 import Auth from './components/auth/auth';
 import Error from './components/error/error';
+import Registration from './components/auth/registration';
 
 
 const router = createBrowserRouter([
   {
     path: "/auth",
     element: <Auth />
+  },
+  {
+    path: "/registration",
+    element: <Registration />
   },
   {
     path: "/denied",

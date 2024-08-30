@@ -1,8 +1,9 @@
 import Cookies from "js-cookie"
-import { FetchFn } from "../FetchFn"
+import { FetchFn } from "../FetchFn.tsx"
 import { TypeActionForGetStateMessage, TypeMessage } from "../../store/functions/message"
 import { TypeActionForGetStateLoginStatus, TypeStatus } from "../../store/functions/login_status"
 import { NavigateFunction } from "react-router-dom"
+import { FetchTypes } from "../../STANDARTS.ts"
 
 export type InputType = "login" | "password"
 
@@ -45,31 +46,39 @@ export const CheckInput = (value: string, type: InputType): boolean | string => 
 }
 
 //робить спробу ввійти в акаунт
-export const Login = (
+export const Authentication = (
+    type: FetchTypes,
     login: string,
     password: string,
     setMessage: (payload: TypeMessage) => TypeActionForGetStateMessage,
     setLoading: ((value: React.SetStateAction<boolean>) => void) | null,
-    setLoginStatus: (state: TypeStatus) => TypeActionForGetStateLoginStatus
+    setLoginStatus: (state: TypeStatus) => TypeActionForGetStateLoginStatus,
+    navigate: NavigateFunction
 ) => {
     FetchFn({
-        type: "login",
+        type: type,
         login: login,
         password: password
     },
-        (answer: null | string) => {
-            if (answer) {
-                setMessage({ content: { content: answer } })
+        (data: { answer: number | string }, navigate?: NavigateFunction) => {
+            if (data.answer === "success") {
+                setMessage({ content: { content: data.answer } })
+
+                if (navigate) {
+                    navigate("/")
+                }
             } else {
-                setLoginStatus({login_status: true})
+
+                setLoginStatus({ login_status: true })
             }
         },
-        setLoading, setMessage, true
+        setLoading, setMessage, true, navigate
     )
 }
 
 //додає gest_user до user_token тобто каже що користувач не хоче рейструватися
 export const SkipFn = (navigate: NavigateFunction) => {
-    Cookies.set("user_token", "skipped_registration", { path: "/", expires: 0.5 })
+    Cookies.set("user_token", "skipped_registration", { path: "/", expires: 1 })
+    Cookies.set("login", "skipped_registration", { path: "/", expires: 1 })
     navigate("/")
 }
