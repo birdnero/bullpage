@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import styles from "../index.module.scss"
-import logo from "../../assets/logo.png"
-import { Dropdown } from "antd";
+//import logo from "../../assets/logo.png"
+//import { Dropdown } from "antd";
 import gsap from "gsap";
 import { Flip } from "gsap/Flip";
 import "./home.scss"
@@ -17,7 +17,7 @@ type TypeItemFn = {
 }
 
 ////////////////////////////////////////////////////////////
-const DropDownItem: React.FC<TypeItemFn> = ({ name, onClick }) => {
+/*const DropDownItem: React.FC<TypeItemFn> = ({ name, onClick }) => {
     const DivRef = useRef<HTMLDivElement>(null)
 
     const state = Flip.getState(DivRef.current)
@@ -26,16 +26,16 @@ const DropDownItem: React.FC<TypeItemFn> = ({ name, onClick }) => {
             border: "2px solid #ff007b88"
         })
     }} className={styles.home_navbar_dropdown_item} onClick={() => onClick()}>{name}</div>
-}
+}*/
 ////////////////////////////////////////////////////////////
 
 
 
-const filterTL = gsap.timeline()
-let directChanger = true
+//const filterTL = gsap.timeline()
+//let directChanger = true
 
 const Navbar: React.FC = () => {
-    const filterRef = useRef(null)
+    //const filterRef = useRef(null)
     const navigate = useNavigate()
 
     return <div className={"navbar_container"}>
