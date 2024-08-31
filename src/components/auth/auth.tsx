@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { Input, ConfigProvider, Space, InputRef, message } from "antd";
 import styles from "../index.module.scss"
 import { CloseCircleOutlined, EyeInvisibleOutlined, EyeOutlined, LoadingOutlined } from "@ant-design/icons";
-import logo from "../../assets/logo.png"
+import logo from "../../assets/logo_wm.svg"
 import ok_btn from "../../assets/ok_btn.svg"
 import { getState, setState } from "../../store/store";
 import Cookies from "js-cookie"
@@ -74,7 +74,7 @@ const Auth: React.FC = () => {
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "end" }}>
 
                         <p className={styles.auth_text}>Log in</p>
-                        <img style={{ userSelect: "none" }} src={logo} alt="logo" />
+                        <img style={{ userSelect: "none", aspectRatio: "1 / 1", height: "12dvh"}} src={logo} alt="logo" />
 
                     </div>
                     {/* login input */}
