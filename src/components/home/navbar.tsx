@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import styles from "../index.module.scss"
+import React from "react";
+//import styles from "../index.module.scss"
 //import logo from "../../assets/logo.png"
 //import { Dropdown } from "antd";
 import gsap from "gsap";
@@ -11,10 +11,10 @@ import { create_post, home, saved } from "../../assets/modified_icons/ICONS"
 
 gsap.registerPlugin(Flip)
 
-type TypeItemFn = {
+/*type TypeItemFn = {
     name: string;
     onClick: () => any;
-}
+}*/
 
 ////////////////////////////////////////////////////////////
 /*const DropDownItem: React.FC<TypeItemFn> = ({ name, onClick }) => {
