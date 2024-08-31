@@ -88,7 +88,7 @@ const Registration: React.FC = () => {
                     {/* login input */}
                     <Input
                         style={{ marginBottom: "2dvh" }}
-                        /*autoFocus*///TODO:РОЗКОМЕНТИТИ ПОТІМ
+                        autoFocus
                         value={input1} //разом з onChange записує значення в стан
                         onChange={(e) => setInput1(e.currentTarget.value)}
                         onKeyDown={(e) => { //перевірка та рефокусація при нажиманні Enter

@@ -11,6 +11,7 @@ import ok_btn from "../../assets/ok_btn.svg"
 import { getState, setState } from "../../store/store";
 import Cookies from "js-cookie"
 import { Colors } from "../../STANDARTS";
+import BACKFROUND from "../BACKGROUND/background";
 
 const Auth: React.FC = () => {
     const [loading, setLoading] = useState(false)
@@ -47,16 +48,9 @@ const Auth: React.FC = () => {
 
 
 
-
-
-
-
-
-
-
-
     return <>
         {<div className={styles.auth_container}>
+            <BACKFROUND />
             <ConfigProvider
                 theme={{
                     components: {
@@ -85,7 +79,7 @@ const Auth: React.FC = () => {
                     </div>
                     {/* login input */}
                     <Input
-                        /*autoFocus*///TODO:РОЗКОМЕНТИТИ ПОТІМ
+                        autoFocus
                         value={input1} //разом з onChange записує значення в стан
                         onChange={(e) => setInput1(e.currentTarget.value)}
                         onKeyDown={(e) => { //перевірка та рефокусація при нажиманні Enter

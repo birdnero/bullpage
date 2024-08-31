@@ -1,8 +1,8 @@
 import React from "react";
 
-const Home: React.FC = () => {
+const Body: React.FC = () => {
     return <>
 
     </>
 }
-export default Home
+export default Body

@@ -1,29 +1,63 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useLayoutEffect } from "react"
 import Cookies from "js-cookie"
-// import { useNavigate } from "react-router-dom"
-import Loading from "./loading/loading"
-// import { message } from "antd"
+import { useNavigate } from "react-router-dom"
+import { ConfigProvider, message } from "antd"
+import { getState } from "../store/store"
+import styles from "./index.module.scss"
+import Navbar from "./home/navbar"
+import Body from "./home/body"
+import Footer from "./home/footer"
+import { Colors } from "../STANDARTS"
 
 
 const App: React.FC = () => {
-  const [loading, setLoading] = useState(false)
-  // const navigate = useNavigate()
-  // const [messageApi, messageElement] = message.useMessage()
+  const navigate = useNavigate()
+  const [messageApi, messageElement] = message.useMessage()
+  const { content, duration, onClose } = getState(e => e.getMessage)
 
-  useEffect(()=>{
+  useEffect(() => {
+
     if (!Cookies.get("user_token")) {
-      // navigate("/auth")
+      navigate("/auth")
     }
-    setLoading(false)
   }, [])
-  // useLayoutEffect(() => {
-  //   messageApi.info(content, duration, onClose)
-  // }, [content])
+  useLayoutEffect(() => {
+    messageApi.info(content, duration, onClose)
+  }, [content, duration, onClose])
 
 
   return <>
-    {/* {messageElement} */}
-    {loading ? <Loading /> : <div style={{background: "#000"}}>you are logged in</div>}
+    <ConfigProvider
+      theme={{
+        components: {
+          Input: {
+            colorTextPlaceholder: Colors.colorTextPlaceholder
+          },
+          Message: {
+            contentBg: Colors.magenta
+          },
+          Dropdown: {
+            colorBgElevated: Colors.gray,
+            
+          }
+        },
+      }}
+    >
+      {messageElement}
+      <div className={styles.home_container}>
+
+
+        <Navbar />
+
+
+        <Body />
+
+
+        <Footer />
+
+
+      </div>
+    </ConfigProvider>
   </>
 }
 
