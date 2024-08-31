@@ -40,6 +40,10 @@ const router = createBrowserRouter([
   }
 
 ]);
+const body = document.querySelector("body")
+if(body){
+  body.requestFullscreen();
+}
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
