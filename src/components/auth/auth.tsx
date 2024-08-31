@@ -74,7 +74,7 @@ const Auth: React.FC = () => {
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "end" }}>
 
                         <p className={styles.auth_text}>Log in</p>
-                        <img style={{ userSelect: "none", aspectRatio: "1 / 1", height: "12dvh"}} src={logo} alt="logo" />
+                        <img className={styles.logo_img} src={logo} alt="logo" />
 
                     </div>
                     {/* login input */}

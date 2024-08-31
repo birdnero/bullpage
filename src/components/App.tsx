@@ -8,6 +8,7 @@ import Navbar from "./home/navbar"
 import Body from "./home/body"
 import Footer from "./home/footer"
 import { Colors } from "../STANDARTS"
+import BACKFROUND from "./BACKGROUND/background"
 
 
 const App: React.FC = () => {
@@ -38,13 +39,14 @@ const App: React.FC = () => {
           },
           Dropdown: {
             colorBgElevated: Colors.gray,
-            
+
           }
         },
       }}
     >
       {messageElement}
       <div className={styles.home_container}>
+        <BACKFROUND />
 
 
         <Navbar />

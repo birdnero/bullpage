@@ -1,0 +1,33 @@
+.navbar_container {
+    position: absolute;
+    z-index: 1000;
+    bottom: 2dvh;
+    left: 0;
+    width: 80dvw;
+    height: 8dvh;
+    background: #44444466;
+    box-shadow: 0 0 5px 5px #00000020;
+    border-radius: var(--height-standart-step);
+    border-bottom: 2px solid #282424aa;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-inline: 5dvw;
+    padding-inline: 5dvw;
+}
+
+.home_icon{
+    height: 4.5dvh;
+    margin-inline: 5dvw;
+    fill: #ffd9e9c7;
+    user-select: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+
+    
+     
+    &:hover{
+        filter: drop-shadow(1px 1px 5px #ffd9e9c7);
+    }
+}

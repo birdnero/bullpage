@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assets/logo_no_magenta.png"
+import logo from "../../assets/logo_bw.svg"
 import { useLocation } from 'react-router-dom';
 import styles from "../index.module.scss"
 
@@ -24,7 +24,7 @@ const Error: React.FC = () => {
 
     return <div className={styles.error_container}>
         <div className={styles.error_inner_container}>
-            <img src={logo} alt="logo" />
+            <img src={logo} className={styles.logo_img} alt="logo" />
             <p className={styles.error_text}>
                 {text}
             </p>
