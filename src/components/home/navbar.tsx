@@ -1,10 +1,8 @@
 import React, { useRef } from "react";
 import styles from "../index.module.scss"
 import logo from "../../assets/logo.png"
-import { FallOutlined, FilterOutlined, RiseOutlined, SearchOutlined } from "@ant-design/icons";
-import { Dropdown, Input } from "antd";
-import { Colors } from "../../STANDARTS";
-import { useNavigate } from "react-router-dom";
+import { FallOutlined, FilterOutlined, RiseOutlined } from "@ant-design/icons";
+import { Dropdown } from "antd";
 import gsap from "gsap";
 import { Flip } from "gsap/Flip";
 
@@ -35,7 +33,6 @@ let directChanger = true
 
 const Navbar: React.FC = () => {
     const filterRef = useRef(null)
-    const navigate = useNavigate()
 
     return <div className={styles.home_navbar_container}>
         <a href="/profile">
