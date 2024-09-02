@@ -89,6 +89,7 @@ const Auth: React.FC = () => {
                                 const fitTemplate = CheckInput(input1, "login")
                                 if (!fitTemplate) {
                                     if (second_input_ref.current) {
+                                        console.log(fitTemplate)
                                         second_input_ref.current.focus();
                                     }
                                 } else {
