@@ -7,7 +7,7 @@ import { Flip } from "gsap/Flip";
 import "./home.scss"
 import Icon from "../../assets/modified_icons/icon";
 import { useNavigate } from "react-router-dom";
-import { create_post, home, saved } from "../../assets/modified_icons/ICONS"
+import { home, post, saved } from "../../assets/modified_icons/ICONS"
 
 gsap.registerPlugin(Flip)
 
@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
 
         <Icon path={saved} className="home_icon" onClick={() => {navigate("/saved")}} />
 
-        <Icon path={create_post} className="home_icon" onClick={()=>navigate("/create_post")} />
+        <Icon path={post} className="home_icon" onClick={()=>navigate("/posts")} />
 
 
         {/*<Dropdown

@@ -1,11 +1,10 @@
 import React, { useEffect, useLayoutEffect } from "react"
 import Cookies from "js-cookie"
-import { useNavigate } from "react-router-dom"
+import { Outlet, useNavigate } from "react-router-dom"
 import { ConfigProvider, message } from "antd"
 import { getState } from "../store/store"
 import styles from "./index.module.scss"
 import Navbar from "./home/navbar"
-import Body from "./home/body"
 import TopBar from "./home/topBar"
 import { Colors } from "../STANDARTS"
 import BACKFROUND from "./BACKGROUND/background"
@@ -77,7 +76,7 @@ const App: React.FC = () => {
 
         <TopBar />
 
-        <Body />
+        <Outlet />
 
 
 

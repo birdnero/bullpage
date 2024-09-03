@@ -10,13 +10,15 @@ import { state } from './store/store';
 import Auth from './components/auth/auth';
 import Error from './components/error/error';
 import Registration from './components/auth/registration';
+import CreatePost from './components/home/create_post/create_post';
+import Body from './components/home/body';
 
 
 
 const router = createBrowserRouter([
   {
     path: "/auth",
-    element: <Auth />
+    element: <Auth />,
   },
   {
     path: "/registration",
@@ -36,7 +38,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <App />
+    element: <App />,
+    children: [
+      {path: "", element: <Body />},
+      {path: "posts", element: <CreatePost />},
+    ]
     
   }
 

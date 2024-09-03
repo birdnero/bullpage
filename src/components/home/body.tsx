@@ -2,6 +2,10 @@ import React, { ReactNode, useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
+import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
+import Icon from "../../assets/modified_icons/icon";
+import { left_arrow, like, liked, right_arrow } from "../../assets/modified_icons/ICONS";
+
 
 interface ISlidePost {
     img: string,
@@ -37,10 +41,6 @@ data.forEach((el, index) => elements.push(<SwiperSlide key={index}>
     <SliderPost key={(Math.round(Math.random()) * 1000)} img={el.img} name={el.name} />
 </SwiperSlide>))
 
-
-import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
-import Icon from "../../assets/modified_icons/icon";
-import { left_arrow, like, liked, right_arrow } from "../../assets/modified_icons/ICONS";
 
 const Body: React.FC = () => {
     return <div className="body_container">
