@@ -1,7 +1,7 @@
 import React, { ReactNode, useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-
+import img from "../../assets/picture.svg"
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
 import Icon from "../../assets/modified_icons/icon";
 import { left_arrow, like, liked, right_arrow } from "../../assets/modified_icons/ICONS";
@@ -34,7 +34,7 @@ const SliderPost: React.FC<ISlidePost> = ({ img, name, key }) => {
     </div>
 }
 const elements: ReactNode[] = []
-const data = [{ img: "khh", name: "hhh" }, { img: "khh", name: "h hh" }, { img: "khh", name: "hhh" }, { img: "khh", name: "hhh" },]
+const data = [{ img: img, name: "it's an image" }, { img: img, name: "it's an image" }, ]
 
 data.forEach((el, index) => elements.push(<SwiperSlide key={index}>
 
