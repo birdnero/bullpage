@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
 import Icon from "../../../assets/modified_icons/icon";
-import { create_post, left_arrow, post, right_arrow } from "../../../assets/modified_icons/ICONS";
+import { create_post, post } from "../../../assets/modified_icons/ICONS";
 import styles from "./create_post.module.scss"
 import "../home.scss"
 import { useNavigate } from "react-router-dom";
