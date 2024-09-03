@@ -50,14 +50,6 @@ const Registration: React.FC = () => {
 
 
 
-
-
-
-
-
-
-
-
     return <>
         {<div className={styles.auth_container}>
             <BACKFROUND />

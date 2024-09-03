@@ -6,15 +6,39 @@ import { getState } from "../store/store"
 import styles from "./index.module.scss"
 import Navbar from "./home/navbar"
 import Body from "./home/body"
-import Footer from "./home/footer"
+import TopBar from "./home/topBar"
 import { Colors } from "../STANDARTS"
 import BACKFROUND from "./BACKGROUND/background"
+
 
 
 const App: React.FC = () => {
   const navigate = useNavigate()
   const [messageApi, messageElement] = message.useMessage()
   const { content, duration, onClose } = getState(e => e.getMessage)
+
+  useEffect(() => {
+    const handleUserInteraction = () => {
+      const body = document.querySelector('body');
+      if (body) {
+        body.requestFullscreen().catch((err) => {
+          console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+        });
+
+        // Remove the event listeners after the first interaction
+      }
+    };
+
+    // Attach event listeners
+    document.addEventListener('click', handleUserInteraction);
+    document.addEventListener('touchstart', handleUserInteraction);
+
+    // Clean up the event listeners when the component unmounts
+    return () => {
+      document.removeEventListener('click', handleUserInteraction);
+      document.removeEventListener('touchstart', handleUserInteraction);
+    };
+  }, []);
 
   useEffect(() => {
 
@@ -51,11 +75,11 @@ const App: React.FC = () => {
 
         <Navbar />
 
+        <TopBar />
 
         <Body />
 
 
-        <Footer />
 
 
       </div>

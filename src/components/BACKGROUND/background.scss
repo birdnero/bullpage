@@ -10,7 +10,7 @@
     --circle-size: 80%;
     --blending: hard-light;
 
-    --z-index: -1; //TODO:change later
+    --z-index: -10; //TODO:change later
 }
 
 .relative {
@@ -97,27 +97,27 @@
 
 .g1 {
     position: absolute;
-    background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%) no-repeat;
+    background: radial-gradient(circle at center, rgba(var(--color1), 0.5) 0, rgba(var(--color1), 0) 35%) no-repeat;
     mix-blend-mode: var(--blending);
 
-    width: var(--circle-size);
-    height: var(--circle-size);
+    width: calc(var(--circle-size) * 1.5);
+    height: calc(var(--circle-size) * 1.5);
     top: calc(50% - var(--circle-size) / 2);
     left: calc(50% - var(--circle-size) / 2);
 
     transform-origin: center center;
     animation: moveVertical 30s ease infinite;
-
+z-index: -9;
     opacity: 1;
 }
 
 .g2 {
     position: absolute;
-    background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 50%) no-repeat;
+    background: radial-gradient(circle at center, rgba(var(--color2), 0.5) 0, rgba(var(--color2), 0) 35%) no-repeat;
     mix-blend-mode: var(--blending);
 
-    width: var(--circle-size);
-    height: var(--circle-size);
+    width: calc(var(--circle-size) * 1.5);
+    height: calc(var(--circle-size) * 1.5);
     top: calc(50% - var(--circle-size) / 2);
     left: calc(50% - var(--circle-size) / 2);
 
@@ -129,11 +129,11 @@
 
 .g3 {
     position: absolute;
-    background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 50%) no-repeat;
+    background: radial-gradient(circle at center, rgba(var(--color3), 0.5) 0, rgba(var(--color3), 0) 35%) no-repeat;
     mix-blend-mode: var(--blending);
 
-    width: calc(var(--circle-size) * 0.8);
-    height: calc(var(--circle-size) * 0.8);
+    width: calc(var(--circle-size) * 1.5);
+    height: calc(var(--circle-size) * 1.5);
     top: calc(50% - var(--circle-size) / 2 + 200px);
     left: calc(50% - var(--circle-size) / 2 - 500px);
 
@@ -145,11 +145,11 @@
 
 .g4 {
     position: absolute;
-    background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 50%) no-repeat;
+    background: radial-gradient(circle at center, rgba(var(--color4), 0.5) 0, rgba(var(--color4), 0) 35%) no-repeat;
     mix-blend-mode: var(--blending);
 
-    width: var(--circle-size);
-    height: var(--circle-size);
+    width: calc(var(--circle-size) * 1.5);
+    height: calc(var(--circle-size) * 1.5);
     top: calc(50% - var(--circle-size) / 2);
     left: calc(50% - var(--circle-size) / 2);
 

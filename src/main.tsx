@@ -12,6 +12,7 @@ import Error from './components/error/error';
 import Registration from './components/auth/registration';
 
 
+
 const router = createBrowserRouter([
   {
     path: "/auth",
