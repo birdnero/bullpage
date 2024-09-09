@@ -3,12 +3,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
 import Icon from "../../../assets/modified_icons/icon";
 import { create_post, post } from "../../../assets/modified_icons/ICONS";
-import styles from "./create_post.module.scss"
+import styles from "./posts.module.scss"
 import "../home.scss"
 import { useNavigate } from "react-router-dom";
 
 
-const CreatePost: React.FC = () => {
+const Posts: React.FC = () => {
     const navigate = useNavigate()
     const [arrows, setArrows] = useState([false, true, 1])
 
@@ -86,4 +86,4 @@ const CreatePost: React.FC = () => {
     </div>
 }
 
-export default CreatePost
+export default Posts

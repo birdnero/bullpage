@@ -10,8 +10,9 @@ import { state } from './store/store';
 import Auth from './components/auth/auth';
 import Error from './components/error/error';
 import Registration from './components/auth/registration';
-import CreatePost from './components/home/create_post/create_post';
 import Body from './components/home/body';
+import Posts from './components/home/posts/posts';
+import CreatePost from './components/home/posts/create_post/create_post';
 
 
 
@@ -40,16 +41,19 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      {path: "", element: <Body />},
-      {path: "posts", element: <CreatePost />},
+      { path: "", element: <Body /> },
+      { path: "posts", element: <Posts /> },
+      { path: "create_post", element: <CreatePost /> },
+      { path: "my_posts", element: <></> }
     ]
-    
+
   }
 
 ]);
 const body = document.querySelector("body")
-if(body){
-  body.requestFullscreen();
+if (body) {
+      body.requestFullscreen();
+
 }
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

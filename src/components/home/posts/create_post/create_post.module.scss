@@ -1,0 +1,117 @@
+@import "../../../index.module.scss";
+
+.ok_btn {
+    background-color: #44444466;
+    box-shadow: 0 0 5px 5px #00000020;
+
+
+}
+
+.modal_footer {
+    display: flex;
+    justify-content: end;
+}
+
+
+.crop_zone {
+    width: 80%;
+    margin: 10%;
+}
+
+.uploaded_img {
+    border-radius: var(--width-standart-step);
+    aspect-ratio: 1/1;
+    width: 100%;
+}
+
+.fullScreen_container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100dvw;
+    height: 100dvh;
+    background: var(--transparent-magenta);
+    z-index: 1999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes fullScreen_text {
+    0% {
+        scale: 1;
+    }
+
+    100% {
+        scale: 1.03;
+    }
+}
+
+.fullScreen_text {
+    font-size: var(--t-size-big);
+    animation: fullScreen_text 500ms ease-in-out 0s infinite alternate;
+    text-shadow: var(--t-shadow-norm-gray);
+    user-select: none;
+}
+
+.loading {
+    & * {
+        font-size: var(--height-standart-step);
+        color: var(--magenta);
+        height: 4.5dvh;
+    }
+
+    aspect-ratio: 1 / 1;
+}
+
+.uploaded_container {
+    &1 {
+        position: static;
+        height: calc(2 * var(--height-standart-step));
+        aspect-ratio: 1/1;
+
+    }
+
+    &2 {
+        position: relative;
+        height: 100%;
+        aspect-ratio: 1/1;
+    }
+}
+
+.delete_btn {
+    position: absolute;
+    height: 97%;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    -webkit-tap-highlight-color: transparent;
+    border: 2px solid var(--icon-magenta);
+    border-radius: var(--width-standart-step);
+    box-shadow: 0 0 5px 5px #00000051;
+
+    &:hover {
+        background-color: #000000a8;
+    }
+
+    &:hover .trash_ico {
+        fill: var(--icon-magenta);
+    }
+}
+
+.trash_ico {
+    height: 2.5dvh;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+    fill: transparent;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media (pointer: coarse) {
+    .trash_ico {
+        fill: var(--icon-magenta);
+    }
+}

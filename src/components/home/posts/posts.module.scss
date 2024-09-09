@@ -1,3 +1,5 @@
+@import "../../index.module.scss";
+
 .p1_container{
     width: 94%;
     height: 94%;
@@ -23,14 +25,14 @@
     @include flex-1000center();
 
     &:first-of-type{
-        border-bottom: 4px solid #ffd9e9c7;
+        border-bottom: 4px solid var(--icon-magenta);
     }
     &:last-of-type{
-        border-top: 4px solid #ffd9e9c7;
+        border-top: 4px solid var(--icon-magenta);
     }
 
     &:hover{
-        filter: drop-shadow(1px 1px 5px #ffd9e9c7);
+        filter: drop-shadow(1px 1px 5px var(--icon-magenta));
     }
 }
 

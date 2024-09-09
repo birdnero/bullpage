@@ -17,6 +17,8 @@
     --gray: #2b2a2a;
     --magenta: #ff007b;
     --transparent-magenta: #ff007b40;
+    --icon-magenta: #ffd9e9c7;
+    --gray-bg: linear-gradient(40deg, #00000040, #44444466);
 
     --t-size-big: 5dvh;
     --t-size-normal: 2.5dvh;
@@ -24,6 +26,7 @@
     --t-shadow-norm-gray: 4px 1px 4px var(--gray);
     --t-shadow-light-magenta: 4px 1px 4px var(--magenta);
     --t-shadow-light-white: 4px 1px 4px var(--white);
+    --bg-shadow: 1px 1px 6px #00000039;
 
     --height-standart-step: 6dvh;
     --width-standart-step: 5dvw;
