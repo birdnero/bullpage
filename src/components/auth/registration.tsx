@@ -6,8 +6,8 @@ import { useEffect } from "react";
 import { Input, ConfigProvider, Space, InputRef, message } from "antd";
 import styles from "../index.module.scss"
 import { CloseCircleOutlined, EyeInvisibleOutlined, EyeOutlined, LoadingOutlined } from "@ant-design/icons";
-import logo from "../../assets/logo_wm.svg"
-import ok_btn from "../../assets/ok_btn.svg"
+import logo from "../../../public/assets/logo_wm.svg"
+import ok_btn from "../../../public/assets/ok_btn.svg"
 import { getState, setState } from "../../store/store";
 import Cookies from "js-cookie"
 import { Colors } from "../../STANDARTS";

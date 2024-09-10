@@ -1,10 +1,10 @@
 import React, { ReactNode, useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import img from "../../assets/picture.svg"
+import img from "../../../public/assets/picture.svg"
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
-import Icon from "../../assets/modified_icons/icon";
-import { left_arrow, like, liked, right_arrow } from "../../assets/modified_icons/ICONS";
+import Icon from "../../../public/assets/modified_icons/icon";
+import { left_arrow, like, liked, right_arrow } from "../../../public/assets/modified_icons/ICONS";
 
 
 interface ISlidePost {

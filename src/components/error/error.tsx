@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assets/logo_bw.svg"
+import logo from "../../../public/assets/logo_bw.svg"
 import { useLocation } from 'react-router-dom';
 import styles from "../index.module.scss"
 

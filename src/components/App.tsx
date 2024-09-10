@@ -18,14 +18,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const handleUserInteraction = () => {
-      const body = document.querySelector('body');
-      if (body) {
-        body.requestFullscreen().catch((err) => {
-          console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-        });
-
-        // Remove the event listeners after the first interaction
-      }
+      document.documentElement.requestFullscreen()
     };
 
     // Attach event listeners

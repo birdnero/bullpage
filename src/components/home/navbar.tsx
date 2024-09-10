@@ -5,9 +5,9 @@ import React from "react";
 import gsap from "gsap";
 import { Flip } from "gsap/Flip";
 import "./home.scss"
-import Icon from "../../assets/modified_icons/icon";
+import Icon from "../../../public/assets/modified_icons/icon";
 import { useNavigate } from "react-router-dom";
-import { home, post, saved } from "../../assets/modified_icons/ICONS"
+import { home, post, saved } from "../../../public/assets/modified_icons/ICONS"
 
 gsap.registerPlugin(Flip)
 

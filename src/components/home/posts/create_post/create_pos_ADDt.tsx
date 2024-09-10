@@ -1,139 +1,129 @@
-import { ThemeConfig } from "antd";
+import { ThemeConfig, UploadFile } from "antd";
 import { EffectCoverflow, Navigation, Pagination } from "swiper/modules";
 import { SwiperProps, SwiperRef } from "swiper/react";
 import { Colors } from "../../../../STANDARTS";
+import { Crop } from "react-image-crop";
+import { RectReadOnly } from "react-use-measure";
 
-export const SwiperProp:React.RefAttributes<SwiperRef> & React.PropsWithChildren<SwiperProps> ={
-    effect: 'coverflow',
-    grabCursor: true,
-    centeredSlides: false,
-    slidesPerView: 'auto',
-    coverflowEffect: {
-        rotate: 30,
-        stretch: 0,
-        depth: 100,
-        modifier: 2.5,
-    },
-    allowTouchMove: false,
-    simulateTouch: false,
-    noSwiping: true,
-    mousewheel: false,
-    pagination: { el: '.swiper-pagination', clickable: true },
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-    modules: [EffectCoverflow, Pagination, Navigation],
-    className: "swiper_container",
+// задає конфігурацію для слайдера
+export const SwiperProp: React.RefAttributes<SwiperRef> & React.PropsWithChildren<SwiperProps> = {
+  effect: 'coverflow',
+  grabCursor: true,
+  centeredSlides: false,
+  slidesPerView: 'auto',
+  coverflowEffect: {
+    rotate: 30,
+    stretch: 0,
+    depth: 100,
+    modifier: 2.5,
+  },
+  allowTouchMove: false,
+  simulateTouch: false,
+  noSwiping: true,
+  mousewheel: false,
+  pagination: { el: '.swiper-pagination', clickable: true },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  modules: [EffectCoverflow, Pagination, Navigation],
+  className: "swiper_container",
 }
 
+// задає конфігурацію для конфіґ провайдера
 export const AntdTheme: ThemeConfig = {
-    components: {
-        Modal: {
-            contentBg: "#14141492",
-            headerBg: "transparent",
-            boxShadow: Colors.bg_shadow,
-            
-        }
+  components: {
+    Modal: {
+      contentBg: "#14141492",
+      headerBg: "transparent",
+      boxShadow: Colors.bg_shadow,
+
     }
+  }
 }
-/*
 
-import React, { useState, useRef } from "react";
-import ReactCrop, { Crop, PixelCrop } from "react-image-crop";
-import 'react-image-crop/src/ReactCrop.scss';
+// ця хрінь збирає з всього на світі дані і створює обрізане зображення
+export const generateCroppedImage = (
+  img_id: string,
+  cropImgRef: React.RefObject<HTMLImageElement>,
+  cropCanvasRef: React.RefObject<HTMLCanvasElement>,
+  crop: Crop | undefined, upd_bounds: RectReadOnly,
+  setFinalImageList: (value: React.SetStateAction<{
+    url: string;
+    name: string;
+    id: string;
+    file: Blob;
+  }[]>) => void
+) => {
+  if (cropImgRef.current && cropCanvasRef.current && crop) {
 
-const ImageCropper = () => {
-  const [crop, setCrop] = useState<Crop>({
-    unit: '%',
-    width: 50,
-    aspect: 1,
-  });
-  const [completedCrop, setCompletedCrop] = useState<PixelCrop | null>(null);
-  const imgRef = useRef<HTMLImageElement | null>(null); // Референс для зображення
-  const previewCanvasRef = useRef<HTMLCanvasElement | null>(null); // Референс для canvas
-
-  const onImageLoaded = (img: HTMLImageElement) => {
-    imgRef.current = img;
-  };
-
-  const onCropComplete = (crop: PixelCrop) => {
-    setCompletedCrop(crop);
-    generateCroppedImage(crop);
-  };
-
-  const generateCroppedImage = (crop: PixelCrop) => {
-    if (!imgRef.current || !previewCanvasRef.current || !crop.width || !crop.height) {
-      return;
-    }
-
-    const image = imgRef.current;
-    const canvas = previewCanvasRef.current;
+    const img = cropImgRef.current
+    const canvas = cropCanvasRef.current;
     const ctx = canvas.getContext("2d");
 
-    const scaleX = image.naturalWidth / image.width;
-    const scaleY = image.naturalHeight / image.height;
+    const scaleX = img.naturalWidth / upd_bounds.width;
+    const scaleY = img.naturalHeight / upd_bounds.height;
 
-    canvas.width = crop.width;
-    canvas.height = crop.height;
+    canvas.width = crop.width * scaleX;
+    canvas.height = crop.height * scaleX;
 
     ctx?.drawImage(
-      image,
-      crop.x * scaleX,
-      crop.y * scaleY,
-      crop.width * scaleX,
-      crop.height * scaleY,
-      0,
-      0,
-      crop.width,
-      crop.height
+      img, //повне зображення
+      crop.x * scaleX, //координати початку х
+      crop.y * scaleY, //координати початку у
+      crop.width * scaleX, //ширина зображення (х)
+      crop.height * scaleY, //довжина зображення (у)
+      0, //координати початку х
+      0, //координати початку y
+      crop.width * scaleX, //ширина полотна (х)
+      crop.height * scaleX //довжина полотна (у)
     );
 
-    // Створити нове зображення на основі canvas
     canvas.toBlob((blob) => {
       if (blob) {
         const fileUrl = URL.createObjectURL(blob);
-        console.log("Cropped image URL:", fileUrl); // Можна використовувати для подальшого завантаження або відображення
+        setFinalImageList(prev => [...prev, {
+          id: img_id,
+          url: fileUrl,
+          file: blob,
+          name: img.alt,
+        }])
       }
     }, "image/jpeg");
-  };
-
-  return (
-    <div>
-      <ReactCrop
-        crop={crop}
-        onChange={(newCrop) => setCrop(newCrop)}
-        onComplete={onCropComplete}
-        aspect={1}
-      >
-        <img
-          src="your-image-url"
-          alt="Crop"
-          onLoad={(e) => onImageLoaded(e.currentTarget)}
-        />
-      </ReactCrop>
-      
-      {/* Canvas для preview або збереження *./}
-      <canvas ref={previewCanvasRef} style={{ display: "none" }} />
-    </div>
-  );
+  }
 };
 
-export default ImageCropper;
+// стандартне налаштування для форми обрізки
+export const cropDefault: Crop = {
+  width: 50,
+  height: 50,
+  x: 50,
+  y: 50,
+  unit: "px"
+}
 
+// ця хуйня отримує фотку, запихає куди треба і перетворює у потрібний формат
+export const loadImageSrc = (
+  fileUpload: UploadFile,
+  isModal: boolean,
+  setisModal: (value: React.SetStateAction<boolean>) => void,
+  setImageSrc: (value: React.SetStateAction<{
+    path: string;
+    id: string;
+    name: string;
+  } | undefined>) => void
+) => {
+  if (!fileUpload.originFileObj || isModal) return; // Умова для перевірки модального стану
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const nextid = fileUpload.uid + Math.round(Math.random() * 1000)
+    setisModal(true); // встановлює стан до завершення операції
+    setImageSrc({
+      path: e.target?.result as string,
+      id: nextid,
+      name: fileUpload.name
+    });
+  };
 
-
-
-document.addEventListener("fullscreenchange", () => {
-  if (document.fullscreenElement) {
-    setTimeout(() => {
-      updateCoordinates();
-    }, 100); // Затримка для стабілізації
-  }
-});
-
-
-
-
-
-*/
+  reader.readAsDataURL(fileUpload.originFileObj);
+};
