@@ -9,6 +9,7 @@ import styles from "./create_post.module.scss"
 import ReactCrop, { Crop } from "react-image-crop";
 import 'react-image-crop/src/ReactCrop.scss'
 import { LoadingOutlined } from "@ant-design/icons";
+import useMeasure from "react-use-measure";
 
 const CreatePost: React.FC = () => {
     //////////////////////////////////////////////////////////////
@@ -41,6 +42,17 @@ const CreatePost: React.FC = () => {
     const [fullScreen, setFullScreen] = useState<boolean>(true);
     const [loading, setLoading] = useState(false)
     const [finalImageList, setFinalImageList] = useState<{ url: string, name: string, id: number, file: Blob }[]>([])
+    const [updateRef, upd_bounds] = useMeasure();
+
+
+    const imgInnerRef = useRef<HTMLImageElement>(null)
+
+    useEffect(() => {
+        if (imgInnerRef.current) {
+            console.log(`w: ${imgInnerRef.current.naturalWidth} h: ${imgInnerRef.current.naturalHeight}`);
+
+        }
+    }, [isModal])
 
     /////////////////////////////////////////////////////////////
 
@@ -51,13 +63,13 @@ const CreatePost: React.FC = () => {
             const canvas = cropCanvasRef.current;
             const ctx = canvas.getContext("2d");
 
-            const scaleX = img.naturalWidth / img.width;
-            const scaleY = img.naturalHeight / img.height;
+            const scaleX = img.naturalWidth / upd_bounds.width;
+            const scaleY = img.naturalHeight / upd_bounds.height;
 
-            canvas.width = crop.width;
-            canvas.height = crop.height;
+            canvas.width = crop.width * scaleX;
+            canvas.height = crop.height * scaleX;
 
-            console.log(`natural W: ${img.naturalWidth}  H: ${img.naturalHeight} \t web W: ${img.width}  H: ${img.height} \t crop W: ${canvas.width}  H: ${canvas.height} \t crop x: ${crop.x}  y: ${crop.y}`);
+            console.log(`natural W: ${img.naturalWidth}  H: ${img.naturalHeight} \t srart cords W: ${crop.x * scaleX}  H: ${crop.y * scaleY} \t canvas W: ${canvas.width}  H: ${canvas.height} \t crop x: ${crop.x}  y: ${crop.y} \t updateRef x: ${upd_bounds.width}  y: ${upd_bounds.height} \t scaleX: ${scaleX} scaleY: ${scaleY}`);    //TODO: delete after
 
 
             ctx?.drawImage(
@@ -65,11 +77,11 @@ const CreatePost: React.FC = () => {
                 crop.x * scaleX, //координати початку х
                 crop.y * scaleY, //координати початку у
                 crop.width * scaleX, //ширина зображення (х)
-                crop.width * scaleX, //довжина зображення (у)
-                0, //координати початку полотна х
-                0, //координати початку полотна У
-                crop.width, //ширина полотна (х)
-                crop.height //довжина полотна (у)
+                crop.height * scaleY, //довжина зображення (у)
+                0, //координати початку х
+                0,
+                crop.width * scaleX, //ширина полотна (х)
+                crop.height * scaleX //довжина полотна (у)
             );
 
             canvas.toBlob((blob) => {
@@ -90,7 +102,7 @@ const CreatePost: React.FC = () => {
         }
     };
 
-///////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////
 
     const loadImageSrc = (fileUpload: UploadFile) => {
         if (!fileUpload.originFileObj || isModal) return; // Умова для перевірки модального стану
@@ -104,7 +116,7 @@ const CreatePost: React.FC = () => {
             });
         };
         console.log(imageSrc);
-        
+
         reader.readAsDataURL(fileUpload.originFileObj);
     };
 
@@ -138,6 +150,20 @@ const CreatePost: React.FC = () => {
                 }}>
                 Tap somewhere
             </div>
+        </div>}
+        {imageSrc && <div
+            style={{ width: '1px', height: '1px', overflow: 'hidden', position: 'relative' }}>
+            <img
+                ref={cropImgRef}
+                src={imageSrc.path}
+                alt=""
+                style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    zIndex: -10,
+                    overflow: "hidden"
+                }} />
         </div>}
         <ConfigProvider theme={PostAdd.AntdTheme}>
             <Swiper {...PostAdd.SwiperProp}>
@@ -206,7 +232,16 @@ const CreatePost: React.FC = () => {
                                         }}
                                         onChange={(newCrop) => setCrop(newCrop)}
                                         className={styles.crop_zone} >
-                                        <img ref={cropImgRef} src={imageSrc.path} alt={imageSrc.name} />
+
+                                        <div ref={updateRef}>
+                                            <img
+
+                                                src={imageSrc.path}
+                                                alt={imageSrc.name}
+                                                style={{
+                                                    width: "100%"
+                                                }} />
+                                        </div>
                                     </ReactCrop>
                                     <canvas ref={cropCanvasRef} style={{ display: "none" }} />
 
@@ -216,6 +251,8 @@ const CreatePost: React.FC = () => {
 
                             </Modal>
                             {finalImageList && finalImageList.map(el => {
+
+
 
                                 return <div className={styles.uploaded_container1} key={el.id}>
                                     <div className={styles.uploaded_container2} key={el.id}>
@@ -227,7 +264,7 @@ const CreatePost: React.FC = () => {
                                                     setFinalImageList(prev => prev.filter(el1 => el1.id !== el.id))
                                                 }} />
                                         </div>
-                                        <img src={el.url} alt="" className={styles.uploaded_img} />
+                                        <img ref={imgInnerRef} src={el.url} alt="" className={styles.uploaded_img} />
 
                                     </div>
                                 </div>
