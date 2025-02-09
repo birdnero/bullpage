@@ -109,7 +109,7 @@ const Biography: React.FC = () => {
             name1: "Олена",
             name2: "Кшик",
             name3: "Андріївна",
-            rating: 97,
+            rating: -13,
             age: 8,
             tag: ["відьма", "опілля"],
             funFact: "підкупила Open AI, продала душу Сему Альтману заради підключення до chat GPT напряму в мозок",
