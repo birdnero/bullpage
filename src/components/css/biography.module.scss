@@ -79,7 +79,9 @@
     -webkit-user-select: none;
 }
 
-.photoBorder{}
+.photoBorder{
+    margin: 0;
+}
 
 .infoBlock {
     height: 100%;
@@ -104,7 +106,9 @@
 
 }
 
-.age {}
+.age {
+    margin: 0;
+}
 
 .tag {
     margin: auto 0 5% 0;
@@ -117,15 +121,18 @@
         -webkit-background-clip: text !important;
         background-clip: text !important;
         -webkit-text-fill-color: transparent;
-        text-fill-color: transparent;
         animation: gradientAnimation 10s linear infinite alternate;
         background-size: 200% !important;
     }
 }
 
-.biography {}
+.biography {
+    margin: 0;
+}
 
-.smthElse {}
+.smthElse {
+    margin: 0;
+}
 
 @keyframes gradientAnimation {
     0% {
