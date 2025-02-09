@@ -1,3 +1,6 @@
+@import "../index.module.scss";
+
+
 :root {
     --color-good: #61d633;
     --color-normal: #c1be5a;
@@ -64,23 +67,37 @@
     border-bottom: var(--separator);
 }
 
-.photo {
+.photoBlock {
     aspect-ratio: 3/4;
     height: 90%;
     margin: 0 5% 5% 0;
+    position: relative;
+}
+
+.photo {
     border: 2px solid #3b3b3b;
+    width: 100%;
     object-fit: cover;
     object-position: center;
-    border-radius: 15px;
-
+    mask-image: radial-gradient(circle, #000000 80%, #00000000 95%);
+    -webkit-mask-image: radial-gradient(circle, #000000 80%, #25252527 95%);
     user-select: none;
     pointer-events: none;
     -webkit-user-drag: none;
     -webkit-user-select: none;
 }
 
-.photoBorder{
-    margin: 0;
+.photoBorder {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    top: 1dvw;
+    left: 1dvw;
+    border: 2px solid;
+    border-image: linear-gradient(to right, var(--white), var(--magenta)) 1;
+    box-shadow: 0 0 5px 5px #00000051;
+
 }
 
 .infoBlock {
@@ -126,12 +143,28 @@
     }
 }
 
+.bottomBlock{
+    width: 100%;
+    height: 60%;
+    border-radius: 0 0 6dvh 6dvh ;
+    display: block;
+    overflow-y: auto;
+    box-sizing: border-box;
+    box-shadow:  0px -200px 45px -167px rgba(0,0,0,0.75);
+}
+
 .biography {
-    margin: 0;
+    width: 100%;
+    height: fit-content;
+    margin-bottom: 3dvh;
+    padding-bottom: 3dvh;
+    border-bottom: var(--separator);
+    text-wrap: pretty;
+    white-space: pre-wrap;
 }
 
 .smthElse {
-    margin: 0;
+    margin-bottom: 6dvh;
 }
 
 @keyframes gradientAnimation {

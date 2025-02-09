@@ -8,7 +8,7 @@ const TopBar: React.FC = () => {
 
     return <div className="topbar_container">
 
-        <p className="logo_text">Anime Pear</p>
+        <p className="logo_text">Bulling Pages</p>
         <div>
             <Icon path={search} style={{margin: 0}} className="home_icon" onClick={() => { navigate("/search") }} />
             <Icon path={settings} className="home_icon" onClick={() => { navigate("/settings") }} />
