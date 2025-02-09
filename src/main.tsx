@@ -1,15 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './components/App';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 import { Provider as ReduxProvider } from 'react-redux'
 import { state } from './store/store';
-import Auth from './components/auth/auth';
+
+import App from './components/App';
 import Error from './components/error/error';
-import Registration from './components/auth/registration';
 import Body from './components/home/body';
 import Posts from './components/home/posts/posts';
 import CreatePost from './components/home/posts/create_post/create_post';
@@ -17,14 +16,6 @@ import CreatePost from './components/home/posts/create_post/create_post';
 
 
 const router = createBrowserRouter([
-  {
-    path: "/auth",
-    element: <Auth />,
-  },
-  {
-    path: "/registration",
-    element: <Registration />
-  },
   {
     path: "/denied",
     element: <Error />

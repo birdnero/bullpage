@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { cancel_ico, check_ico, left_arrow, right_arrow, trash } from "../../../../../public/assets/modified_icons/ICONS.tsx"
+import { cancel_ico, check_ico, left_arrow, right_arrow, trash } from "../../../../assets/modified_icons/ICONS.tsx"
 import "../../home.scss"
 import * as PostAdd from "./create_pos_ADDt.tsx"
 import { ConfigProvider, Modal, Upload } from "antd";
@@ -9,7 +9,7 @@ import ReactCrop, { Crop } from "react-image-crop";
 import 'react-image-crop/src/ReactCrop.scss'
 import { LoadingOutlined } from "@ant-design/icons";
 import useMeasure from "react-use-measure";
-import Icon from "../../../../../public/assets/modified_icons/icon.tsx";
+import Icon from "../../../../assets/modified_icons/icon.tsx";
 import { generateCroppedImage } from "./create_pos_ADDt.tsx";
 
 const CreatePost: React.FC = () => {

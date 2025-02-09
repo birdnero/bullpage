@@ -1,6 +1,6 @@
 import React from "react";
-import Icon from "../../../public/assets/modified_icons/icon";
-import { search, settings } from "../../../public/assets/modified_icons/ICONS";
+import Icon from "../../assets/modified_icons/icon";
+import { search, settings } from "../../assets/modified_icons/ICONS";
 import { useNavigate } from "react-router-dom";
 
 const TopBar: React.FC = () => {

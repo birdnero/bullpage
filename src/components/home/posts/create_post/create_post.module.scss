@@ -57,13 +57,14 @@
 }
 
 .loading {
+    aspect-ratio: 1 / 1;
+    
     & * {
         font-size: var(--height-standart-step);
         color: var(--magenta);
         height: 4.5dvh;
     }
 
-    aspect-ratio: 1 / 1;
 }
 
 .uploaded_container {

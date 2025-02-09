@@ -1,6 +1,5 @@
 import React, { useEffect, useLayoutEffect } from "react"
-import Cookies from "js-cookie"
-import { Outlet, useNavigate } from "react-router-dom"
+import { Outlet } from "react-router-dom"
 import { ConfigProvider, message } from "antd"
 import { getState } from "../store/store"
 import styles from "./index.module.scss"
@@ -8,41 +7,39 @@ import Navbar from "./home/navbar"
 import TopBar from "./home/topBar"
 import { Colors } from "../STANDARTS"
 import BACKFROUND from "./BACKGROUND/background"
+import "./css/hotStrip.module.scss"
 
 
 
 const App: React.FC = () => {
-  const navigate = useNavigate()
   const [messageApi, messageElement] = message.useMessage()
   const { content, duration, onClose } = getState(e => e.getMessage)
+  const hotStrip = getState(e => e.getHotStripRedux)
 
-  useEffect(() => {
-    const handleUserInteraction = () => {
-      document.documentElement.requestFullscreen()
-    };
 
-    // Attach event listeners
-    document.addEventListener('click', handleUserInteraction);
-    document.addEventListener('touchstart', handleUserInteraction);
+  //відповідає за повноекранний режим
+  // useEffect(() => {
+  //   const handleUserInteraction = () => {
+  //     document.documentElement.requestFullscreen()
+  //   };
 
-    // Clean up the event listeners when the component unmounts
-    return () => {
-      document.removeEventListener('click', handleUserInteraction);
-      document.removeEventListener('touchstart', handleUserInteraction);
-    };
-  }, []);
+  //   // Attach event listeners
+  //   document.addEventListener('click', handleUserInteraction);
+  //   document.addEventListener('touchstart', handleUserInteraction);
 
-  useEffect(() => {
+  //   // Clean up the event listeners when the component unmounts
+  //   return () => {
+  //     document.removeEventListener('click', handleUserInteraction);
+  //     document.removeEventListener('touchstart', handleUserInteraction);
+  //   };
+  // }, []);
 
-    if (!Cookies.get("user_token")) {
-      navigate("/auth")
-    }
-  }, [])
   useLayoutEffect(() => {
     messageApi.info(content, duration, onClose)
   }, [content, duration, onClose])
 
 
+  //ConfigProvider відповідає за AntDesign
   return <>
     <ConfigProvider
       theme={{
@@ -65,7 +62,8 @@ const App: React.FC = () => {
         <BACKFROUND />
 
 
-        <Navbar />
+        {/* <Navbar /> */}
+        {hotStrip}
 
         <TopBar />
 

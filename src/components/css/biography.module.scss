@@ -1,0 +1,144 @@
+:root {
+    --color-good: #61d633;
+    --color-normal: #c1be5a;
+    --color-problem: #ffd934;
+    --color-negative: #ff8c34;
+    --color-bad: #ff5a5a;
+
+    --color-elite: #dc00fe;
+
+    --separator: 1px solid #4f4f4f74;
+}
+
+.rating-1 {
+    color: var(--color-bad);
+}
+
+.rating-2 {
+    color: var(--color-negative);
+}
+
+.rating-3 {
+    color: var(--color-problem);
+}
+
+.rating-4 {
+    color: var(--color-normal);
+}
+
+.rating-5 {
+    color: var(--color-good);
+}
+
+.rating-95 {
+    color: var(--color-elite);
+    animation: eliteRating 700ms cubic-bezier(0, .51, .97, .49) 0s infinite alternate;
+    text-shadow: 2px -1px 17px var(--color-elite);
+}
+
+@keyframes eliteRating {
+    0% {
+        scale: 1;
+
+    }
+
+    100% {
+        scale: 1.1;
+    }
+}
+
+
+
+.container {
+    padding: 5%;
+    width: 90%;
+    height: 90%;
+}
+
+.block1 {
+    display: flex;
+    height: 40%;
+    align-items: center;
+    margin: 0 0 2dvh 0;
+    padding-bottom: 1dvh;
+    border-bottom: var(--separator);
+}
+
+.photo {
+    aspect-ratio: 3/4;
+    height: 90%;
+    margin: 0 5% 5% 0;
+    border: 2px solid #3b3b3b;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 15px;
+
+    user-select: none;
+    pointer-events: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+}
+
+.photoBorder{
+    
+}
+
+.infoBlock {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.names {
+    white-space: normal;
+    font-size: 150%;
+
+    padding-bottom: 0.5dvh;
+    margin-bottom: 0.5dvh;
+    border-bottom: var(--separator);
+    width: 100%;
+}
+
+.rating {
+    display: flex;
+
+}
+
+.age {}
+
+.tag {
+    margin: auto 0 5% 0;
+    font-size: 110%;
+    display: flex;
+    flex-wrap: wrap;
+    text-wrap: wrap;
+
+    & * {
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+        -webkit-text-fill-color: transparent;
+        text-fill-color: transparent;
+        animation: gradientAnimation 10s linear infinite alternate;
+        background-size: 200% !important;
+    }
+}
+
+.biography {}
+
+.smthElse {}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
