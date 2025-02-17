@@ -1,0 +1,75 @@
+.container {
+    padding: 5%;
+    width: 90%;
+    height: 90%;
+    position: relative;
+}
+
+.photoBlock {
+    width: 90%;
+    height: 90%;
+    margin: 5%;
+    position: relative;
+}
+
+.photo {
+    // border: 2px solid #3b3b3b;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    mask-image: radial-gradient(circle, #000000 80%, #00000000 95%);
+    -webkit-mask-image: radial-gradient(circle, #000000 80%, #25252527 95%);
+    user-select: none;
+    pointer-events: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+}
+
+.photoBorder1 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 3dvw;
+    left: 3dvw;
+    border: 2px solid;
+    border-image: linear-gradient(to right, var(--white), var(--magenta)) 1;
+    box-shadow: 0 0 5px 5px #00000042;
+    transition: 300ms;
+
+    &:active {
+        scale: 9.05;
+    }
+}
+
+.photoBorder2 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: -3dvw;
+    left: -3dvw;
+    z-index: -1;
+    border: 2px solid;
+    border-image: linear-gradient(to right, var(--white), var(--magenta)) 1;
+    box-shadow: 0 0 5px 5px #00000042;
+    transition: 300ms;
+
+    &:active {
+        scale: 9.05;
+    }
+}
+
+.name {
+    position: absolute;
+    bottom: 7%;
+    left: 15%;
+    font-size: 200%;
+}
+
+.rating {
+    position: absolute;
+    bottom: -1%;
+    right: 10%;
+    display: flex;
+    font-size: 130%;
+}

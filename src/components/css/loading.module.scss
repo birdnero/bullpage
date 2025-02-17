@@ -1,0 +1,107 @@
+.container {
+
+    &1 {
+        width: 100%;
+        height: 100%;
+        position: static;
+    }
+
+    &2 {
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        animation: c2 1.8s cubic-bezier(.99,0,1,.99) 0s 1 forwards infinite;
+    }
+
+    @keyframes c2 {
+        0%{
+            opacity: 1;
+        }
+
+        100%{
+            opacity: 0;
+        }
+    }
+
+    &3 {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.el {
+
+    &1 {
+        aspect-ratio: 3/4;
+        height: 60%;
+        border: 12px solid;
+        
+        border-image: linear-gradient(90deg, rgb((random(200) + 55), 23, (random(200) + 55)), rgb((random(200) + 55), 45, (random(200) + 55))) 1;  
+        animation: el1 2000ms ease-in-out 0s infinite alternate;
+    }
+
+    @keyframes el1 {
+        0%{
+            scale: 0.15;
+            transform: rotateX(0) rotateY(0) rotateZ(0);
+        }
+
+        100%{
+            scale: 1;
+            transform: rotateX(360deg) rotateY(180deg) rotateZ(180deg);
+
+        }
+    }
+
+    &2 {
+        aspect-ratio: 3/4;
+        height: 60%;
+        border: 9px solid;
+        
+        border-image: linear-gradient(90deg, rgb((random(200) + 55), 23, (random(200) + 55)), rgb((random(200) + 55), 45, (random(200) + 55))) 1;  
+        animation: el2 1500ms ease-in-out 0s infinite alternate;
+    }
+
+    @keyframes el2 {
+        0%{
+            scale: 0.25;
+            transform: rotateX(0) rotateY(0) rotateZ(0deg);
+        }
+
+        100%{
+            scale: 1;
+            transform: rotateX(180deg) rotateY(360deg) rotateZ(180deg);
+
+        }
+    }
+
+    &3 {
+        aspect-ratio: 3/4;
+        height: 60%;
+        border: 7px solid;
+        
+        border-image: linear-gradient(90deg, rgb((random(200) + 55), 23, (random(200) + 55)), rgb((random(200) + 55), 45, (random(200) + 55))) 1;  
+        animation: el3 2500ms ease-in-out 0s infinite alternate;
+    }
+
+    @keyframes el3 {
+        0%{
+            scale: 0.05;
+            transform: rotateX(0) rotateY(0) rotateZ(0deg);
+        }
+
+        100%{
+            scale: 1;
+            transform: rotateX(720deg) rotateY(360deg) rotateZ(180deg);
+
+        }
+    }
+
+}

@@ -6,6 +6,7 @@ import { getSwiperLevelRedux, setSwiperLevelRedux } from "./functions/swiperLeve
 import { getModelIdRedux, setModelIdRedux } from "./functions/modelId";
 import { getSlideNowRedux, setSlideNowRedux } from "./functions/slideNow";
 import { getHotStripRedux, setHotStripRedux } from "./functions/hotStrip";
+import { getGradientNowRedux, setGradientNowRedux } from "./functions/gradientNow";
 
 
 //used in getState
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
     getModelIdRedux: getModelIdRedux,
     getSlideNowRedux: getSlideNowRedux,
     getHotStripRedux: getHotStripRedux,
+    getGradientNowRedux: getGradientNowRedux,
 })
 
 //used in setState
@@ -26,6 +28,7 @@ const ActionCreators={
     setModelIdRedux,
     setSlideNowRedux,
     setHotStripRedux,
+    setGradientNowRedux,
 }
 
 ///////////////////////////////////////////////////////

@@ -13,23 +13,46 @@ interface ISlidePost {
 }
 
 
+function gradientCreator() {
+    const gradients = [
+        "#f40076, #df98fa",
+        "#f06966, #fad6a6",
+        "#ff0076, #590fb7",
+        "#9055ff, #12e2da",
+        "#d6ff7f, #00b3cc",
+        "#e233ff, #ff6b00",
+        "#df98fa, #9055ff",
+        "#ed7b84, #9055ff",
+        "#f40076, #342711",
+        "#cb5eee, #4be1ec",
+        "#fa7cbb, #f14658",
+        "#737dfe, #ffcac9",
+    ]
+
+    const choice = Math.floor(Math.random() * gradients.length)
+    return gradients[choice]
+}
+
 export const SliderPost: React.FC<ISlidePost> = ({ index, Idmodel, level, children, savePosition, }) => {
     const [slide, setSlide] = useState(1)
-    const { setSwiperLevelRedux, setModelIdRedux, setSlideNowRedux } = setState()
+    const { setSwiperLevelRedux, setModelIdRedux, setSlideNowRedux, setGradientNowRedux } = setState()
+    
 
 
     return <Swiper {...bodyADD.verticalInnerFLipSwiperConfig} key={index} className="slider_container" >
         <SwiperSlide
             style={{ visibility: slide == 1 ? "visible" : "hidden" }}
             onClick={() => {
+                const gradient = `linear-gradient(to right, ${gradientCreator()})`
+                    setGradientNowRedux(gradient)
                 setSlide(2)
                 if (Idmodel) {
                     setModelIdRedux(Idmodel)
                 }
                 if (level != null) {
                     setTimeout(() => {
-                        setSwiperLevelRedux({ level: level })
-                    }, 300);
+                        setSwiperLevelRedux({ level: level }) 
+                    }, 1000);
                 }
                 if (savePosition && index != null) {
                     setSlideNowRedux(index)

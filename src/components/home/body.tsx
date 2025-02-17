@@ -5,16 +5,31 @@ import * as bodyADD from "./bodyADD";
 import { SliderPost } from "./sliderPostWithFlipTransition";
 import { getState } from "../../store/store";
 import ModelSlider from "./modelInfo/modelSlider";
+import Preview from "./preview";
+import img from "../../assets/WITCH_PHOTO.jpg"
 
+export interface IdataModelPreview {
+    prePhoto?: string
+    name1: string
+    name2?: string
+    rating: number
+    id: number
+}
 
 const elements: ReactNode[] = []
-const data = ["#1111111111", "#22222222222222", "#333333333333333"]
+const data: IdataModelPreview[] = [{
+    name1: "Олена",
+    rating: 97,
+    name2: "Кшик",
+    prePhoto: img,
+    id: 666,
+}]
 
 data.forEach((el, index, ) => {
     elements.push(
         <SwiperSlide key={index}>
-            <SliderPost level={1} index={index} Idmodel={1} savePosition>
-                {el}
+            <SliderPost level={1} index={el.id} Idmodel={el.id} savePosition>
+                <Preview {...el} />
             </SliderPost>
         </SwiperSlide>)
 })

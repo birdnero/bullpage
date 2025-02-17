@@ -1,0 +1,144 @@
+.container {
+    width: 80%;
+    height: 80%;
+    margin: 10%;
+    position: relative;
+    transform: translateX(-2dvw);
+}
+
+.photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    mask-image: radial-gradient(circle, #000000 80%, #00000000 100%);
+    -webkit-mask-image: radial-gradient(circle, #000000 80%, #25252506 100%);
+    user-select: none;
+    pointer-events: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    animation: photo 0.8s linear infinite alternate;
+}
+
+.prokladka {
+    width: 100%;
+    height: 100%;
+    position: static;
+
+    &:has(.photoBorder1:active) .photoBorder1
+    // &:has(.photoBorder3:active) .photoBorder2,
+    // &:has(.photoBorder3:active) .photoBorder3 
+    {
+        scale: 0.001;
+    }
+}
+
+@keyframes photoBorder1 {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0.98);
+    }
+}
+
+.description {
+    position: absolute;
+    bottom: -1dvh;
+    left: 0dvw;
+    width: 100%;
+    text-align: center;
+    z-index: 99;
+
+    font-size: 130%;
+
+    color: #FFFFFF;
+}
+
+.photoBorder1 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 2dvw;
+    left: 2dvw;
+    border: 4px solid;
+    border-image: linear-gradient(to right, var(--white), var(--magenta)) 1;
+    box-shadow: 0 0 5px 5px #00000042;
+    transition: 300ms;
+    animation: photoBorder1 1s linear infinite alternate;
+    z-index: 100;
+}
+
+@keyframes photoBorder1 {
+    0% {
+        transform: scaleX(1) scaleY(1);
+    }
+
+    100% {
+        transform: scaleX(0.98) scaleY(1.01);
+    }
+}
+
+.photoBorder2 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 2dvw;
+    left: 2dvw;
+    border: 4px solid;
+    border-image: linear-gradient(to right, var(--white), var(--magenta)) 1;
+    transform: rotateX(15deg) rotateY(-1deg) rotateZ(-15deg);
+    transition: 600ms;
+    animation: photoBorder2 1.5s linear infinite alternate;
+    z-index: -1;
+
+
+}
+
+@keyframes photoBorder2 {
+    0% {
+        transform: rotateX(15deg) rotateY(-1deg) rotateZ(12deg) scaleX(1) scaleY(1);
+    }
+
+    100% {
+        transform: rotateX(15deg) rotateY(-1deg) rotateZ(12deg) scaleX(0.98) scaleY(1.01);
+    }
+}
+
+.photoBorder3 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 2dvw;
+    left: 2dvw;
+    border: 4px solid;
+    border-image: linear-gradient(to right, var(--white), var(--magenta)) 1;
+    transform: rotateX(15deg) rotateY(-1deg) rotateZ(-12deg);
+    transition: 900ms;
+    animation: photoBorder3 2s linear infinite alternate;
+    z-index: -1;
+
+
+}
+
+@keyframes photoBorder3 {
+    0% {
+        transform: rotateX(15deg) rotateY(-1deg) rotateZ(-12deg) scaleX(1) scaleY(1);
+    }
+
+    100% {
+        transform: rotateX(15deg) rotateY(-1deg) rotateZ(-12deg) scaleX(0.98) scaleY(1.01);
+    }
+}
+
+.slider_container {
+    width: 100dvw;
+    height: 66dvh;
+    position: relative;
+    border-radius: var(--height-standart-step);
+}
+
+.slider_container_style {
+    backface-visibility: hidden;
+}

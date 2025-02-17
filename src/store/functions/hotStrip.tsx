@@ -30,7 +30,7 @@ export const getHotStripRedux = (state = ZeroMessage, action: TypeActionForGetHo
         >{action.payload}</div>
       </div>
     default:
-      return state;
+      return null;
   }
 };
 
