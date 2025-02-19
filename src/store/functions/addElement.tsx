@@ -17,6 +17,7 @@ const ZeroMessage: ReactNode = null
     конструкція якщо треба і щоб повертало або state що надходить або інші дані цього типу
 }*/
 export const getAddElementRedux = (state = ZeroMessage, action: TypeActionForGetAddElementRedux): ReactNode => {
+  state;
   switch (action.type) {
     case SET:
       return action.payload

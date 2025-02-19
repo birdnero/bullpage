@@ -18,6 +18,7 @@ const ZeroMessage: TypeHotStripRedux = null
     конструкція якщо треба і щоб повертало або state що надходить або інші дані цього типу
 }*/
 export const getHotStripRedux = (state = ZeroMessage, action: TypeActionForGetHotStripRedux): ReactNode => {
+  state;
   switch (action.type) {
     case SET:
       return <div className="hot_strip">
