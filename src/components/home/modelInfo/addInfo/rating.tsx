@@ -1,14 +1,17 @@
 import React, { ReactNode, useState } from "react";
 import css from "../../../css/addinfo.module.scss"
 import { StarFilled, StarOutlined } from "@ant-design/icons";
+import { getState } from "../../../../store/store";
 
 
 const Rating: React.FC = () => {
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
+    const gradient = getState(e => e.getGradientNowRedux)
+
     const data: ReactNode[] = []
     for (let i = 1; i <= 5; i++) {
-        data.push(<div className={css.starContainer}>
+        data.push(<div key={i} className={css.starContainer}>
             {hover >= i ?
                 <StarFilled
                     onClick={() => setRating(e =>{
@@ -31,14 +34,20 @@ const Rating: React.FC = () => {
 
 
 
-    return <div className={css.container}>
+    return <>
         <div className={css.block1}>
-            <div className={css.tip}>оціни людину</div>
+            <div className={css.tipBlock}>
+                <div className={css.tip}>оціни людину</div>
+                <div style={{
+                    borderImage: (gradient + " 1")
+                }} 
+                className={css.tipSeparator}></div>
+            </div>
             <div className={css.rating}>
                 {data}
             </div>
         </div>
-    </div>
+    </>
 }
 
 export default Rating

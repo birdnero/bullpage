@@ -9,7 +9,7 @@ export interface TypeActionForGetHotStripRedux {
 
 
 // Action Types
-const SET = "SET";
+const SET = "SET_STRIP";
 
 //початковий state
 const ZeroMessage: TypeHotStripRedux = null

@@ -5,7 +5,7 @@ import css from "../../css/gallery.module.scss"
 
 import me1 from "../../../assets/me2.jpg"
 import me3 from "../../../assets/me3.jpg"
-import me4 from "../../../assets/me4.jpg"
+import me4 from "../../../assets/WITCH_PHOTO.jpg"
 import { getState } from "../../../store/store";
 
 interface galleryFetchInfoType {
@@ -23,9 +23,9 @@ const Gallery: React.FC = () => {
 
     useEffect(() => {
         const FAKE_DATA: galleryFetchInfoType[] = [
-            { description: "asdf", photo: me1 },
+            { description: "asdf", photo: me4 },
             { description: "erwgasdf khg lkfguh lhfufb kgifihb jkbigigio", photo: me3 },
-            { description: "jhasdf", photo: me4 },
+            { description: "jhasdf", photo: me1 },
             { description: "654asdf", photo: "" },
         ]
         let nodes: ReactNode[] = []
@@ -33,6 +33,7 @@ const Gallery: React.FC = () => {
 
             nodes.push(
                 <SwiperSlide
+
                     key={index}
                     style={{
                         visibility: slide == index ? "visible" : "hidden"
@@ -71,7 +72,6 @@ const Gallery: React.FC = () => {
             loop
             ref={swiperRef}
             {...bodyADD.verticalInnerFLipSwiperConfig}
-            allowTouchMove
             className={css.slider_container}>
             {info}
         </Swiper>

@@ -7,7 +7,7 @@ export type TypeSlideNowRedux = number
   
   
   // Action Types
-  const SET_LEVEL = "SET_ID";
+  const SET_LEVEL = "SET_SLIDE";
   
   //початковий state
   const ZeroMessage: TypeSlideNowRedux = 0

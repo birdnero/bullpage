@@ -10,7 +10,7 @@ import AddInfo from "./addInfo/addInfo";
 
 const ModelSlider: React.FC = () => {
 
-    return <Swiper {...mainSwiperConfig}>
+    return <Swiper {...mainSwiperConfig} >
         <SwiperSlide>
                 <Biography />
         </SwiperSlide>
@@ -20,12 +20,9 @@ const ModelSlider: React.FC = () => {
         <SwiperSlide className="slider_container_style slider_container">
            <AddInfo />
         </SwiperSlide>
-        <SwiperSlide className="slider_container_style slider_container">
-            #4
-        </SwiperSlide>
-        <SwiperSlide className="slider_container_style slider_container">
-            #5
-        </SwiperSlide>
+
+        {/* //? paste new here ... */}
+        
     </Swiper>
 }
 
